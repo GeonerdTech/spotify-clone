@@ -13,8 +13,10 @@ const port = process.env.PORT || 4000;
 connectDB();
 connectCloudinary();
 
+// ✅ FIXED CORS (no conflict)
+app.use(cors());
+
 // middlewares
-app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json());
 
 // routes
