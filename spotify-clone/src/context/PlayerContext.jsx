@@ -9,7 +9,7 @@ const PlayerContextProvider = (props) => {
     const audioRef = useRef();
     const seekBg = useRef();
     const seekBar = useRef();
-    const url = 'https://ominous-sniffle-pjqr974w5r9rcrwvg-4000.app.github.dev'
+    const url = 'https://urban-waffle-697gwvq5x9vqh49qg-4000.app.github.dev'
 
     const [songsData, setSongsData] = useState([]);
     const [albumsData,setAlbumData] = useState([]);

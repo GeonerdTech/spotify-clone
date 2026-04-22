@@ -1,5 +1,4 @@
 import express from "express";
-import cors from "cors";
 import connectCloudinary from "./src/config/cloudinary.js";
 import "dotenv/config";
 import connectDB from "./src/config/mongodb.js";
@@ -13,8 +12,18 @@ const port = process.env.PORT || 4000;
 connectDB();
 connectCloudinary();
 
-// ✅ FIXED CORS (no conflict)
-app.use(cors());
+// ✅ FIXED CORS (dynamic)
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+
+  next();
+});
 
 // middlewares
 app.use(express.json());

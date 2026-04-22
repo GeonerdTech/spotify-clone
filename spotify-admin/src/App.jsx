@@ -10,7 +10,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Navbar from './components/Navbar/Navbar';
 
 // ❗ IMPORTANT: NO trailing slash
-export const url = "https://ominous-sniffle-pjqr974w5r9rcrwvg-4000.app.github.dev";
+export const url = "https://urban-waffle-697gwvq5x9vqh49qg-4000.app.github.dev";
 
 const App = () => {
   return (
