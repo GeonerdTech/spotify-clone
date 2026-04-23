@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import connectCloudinary from "./src/config/cloudinary.js";
 import "dotenv/config";
 import connectDB from "./src/config/mongodb.js";
@@ -8,30 +9,22 @@ import albumRouter from "./src/routes/albumRoute.js";
 const app = express();
 const port = process.env.PORT || 4000;
 
-// DB + Cloudinary
+// 🔌 Connect DB & Cloudinary
 connectDB();
 connectCloudinary();
 
-// ✅ FIXED CORS (dynamic)
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+// ✅ CORS (simple & safe)
+app.use(cors());
 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
-
-// middlewares
+// ✅ Middlewares
 app.use(express.json());
 
-// routes
+// ✅ Routes
 app.use("/api/song", songRouter);
 app.use("/api/album", albumRouter);
 
+// ✅ Test route
 app.get("/", (req, res) => res.send("API Working"));
 
+// ✅ Start server
 app.listen(port, () => console.log(`Server started on ${port}`));
